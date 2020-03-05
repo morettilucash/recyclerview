@@ -31,9 +31,7 @@ public class ListaDatos extends AppCompatActivity {
 
     private ArrayList<Posts> posts;
     private Button regresar;
-    private RecyclerView rvPosts;
     private MyListAdapter adapter;
-
     private TextView jsonTextView;
 
     @Override
@@ -42,7 +40,6 @@ public class ListaDatos extends AppCompatActivity {
         setContentView(R.layout.activity_lista_datos);
 
         jsonTextView = findViewById(R.id.jsonTextView);
-        // getPosts();
 
         regresar = (Button) findViewById(R.id.regresar);
         regresar.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +55,6 @@ public class ListaDatos extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-    }
-
-    public void regresarAct1() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     private void getPosts() {
@@ -106,8 +98,50 @@ public class ListaDatos extends AppCompatActivity {
         });
     }
 
-    public void deletePosts(){
+    public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
+
+        ArrayList<Posts> listdata;
+
+        public MyListAdapter(ArrayList<Posts> listdata) {
+            this.listdata = listdata;
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+            View listItem = layoutInflater.inflate(R.layout.fila_post, parent, false);
+            ViewHolder viewHolder = new ViewHolder(listItem);
+            return viewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            // final Posts p = listdata.get(position);
+            holder.tvId.setText(Integer.toString(listdata.get(position).getId()));
+            holder.tvTitle.setText(listdata.get(position).getTitle());
+        }
+
+        @Override
+        public int getItemCount() {
+            return listdata.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            public TextView tvId;
+            public TextView tvTitle;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                this.tvId = (TextView) itemView.findViewById(R.id.tvId);
+                this.tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
+            }
+        }
+    }
+
+    public void deletePosts() {
         jsonTextView.setText("");
+        this.posts.clear();
+        adapter.notifyDataSetChanged();
     }
 
     public void onClick(View view) {
@@ -121,50 +155,10 @@ public class ListaDatos extends AppCompatActivity {
         }
     }
 
-    public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
-
-        ArrayList<Posts> listdata;
-        // RecyclerView recyclerView;
-        public MyListAdapter(ArrayList<Posts> listdata) {
-            this.listdata = listdata;
-        }
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-            View listItem= layoutInflater.inflate(R.layout.fila_post, parent, false);
-            ViewHolder viewHolder = new ViewHolder(listItem);
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            final Posts p = listdata.get(position);
-            holder.tvId.setText(Integer.toString(listdata.get(position).getId()));
-            holder.tvTitle.setText(listdata.get(position).getTitle());
-//            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-        //        @Override
-        //        public void onClick(View view) {
-        //            Toast.makeText(view.getContext(),"click on item: "+p.getTitle(),Toast.LENGTH_LONG).show();
-        //        }
-        //    });
-        }
-
-        @Override
-        public int getItemCount() {
-            return listdata.size();
-        }
-
-        public class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView tvId;
-            public TextView tvTitle;
-//            public RelativeLayout relativeLayout;
-            public ViewHolder(View itemView) {
-                super(itemView);
-                this.tvId = (TextView) itemView.findViewById(R.id.tvId);
-                this.tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
-//                relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
-            }
-        }
+    public void regresarAct1() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
+
 }
 
