@@ -1,4 +1,4 @@
-package com.example.calculadora.lista_datos;
+package com.example.calculadora;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

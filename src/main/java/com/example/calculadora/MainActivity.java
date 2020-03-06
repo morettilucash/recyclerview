@@ -10,11 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.calculadora.lista_datos.ListaDatos;
-
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button button, button2;
 
     EditText campo1, campo2;
     TextView result;
@@ -36,10 +34,23 @@ public class MainActivity extends AppCompatActivity {
                 openListaDatos();
             }
         });
+
+        button2 = (Button) findViewById(R.id.listaDatos2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openListaDatos2();
+            }
+        });
     }
 
     public void openListaDatos() {
         Intent intent = new Intent(this, ListaDatos.class);
+        startActivity(intent);
+    }
+
+    public void openListaDatos2() {
+        Intent intent = new Intent(this, ListaDatosDos.class);
         startActivity(intent);
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,49 +13,32 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/get"
+            android:id="@+id/get2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="Obtener datos" />
+            android:text="Obtener datos2" />
 
         <Button
-            android:id="@+id/delete"
+            android:id="@+id/delete2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/get"
-            android:layout_toRightOf="@id/get"
+            android:layout_toEndOf="@id/get2"
+            android:layout_toRightOf="@id/get2"
             android:onClick="onClick"
-            android:text="Eliminar datos" />
+            android:text="Eliminar datos2" />
 
         <Button
-            android:id="@+id/regresar"
+            android:id="@+id/regresar2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/delete"
-            android:layout_toRightOf="@id/delete"
+            android:layout_toEndOf="@id/delete2"
+            android:layout_toRightOf="@id/delete2"
             android:onClick="onClick"
-            android:text="Regresar" />
+            android:text="Regresar2" />
 
     </RelativeLayout>
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="123dp">
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/jsonTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="300dp" />
-        </androidx.core.widget.NestedScrollView>
-
-
-    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
